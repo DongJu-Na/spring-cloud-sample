@@ -1,23 +1,28 @@
 server:
-  port: 8761
+  port: 8761 # Eureka 서비스의 포트 번호를 설정합니다.
+
 spring:
   application:
-    name: eureka
+    name: eureka # 스프링 애플리케이션의 이름을 "eureka"로 설정합니다.
   config:
-    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/} # Config Server에서 설정을 가져오도록 설정하며, 기본 URL은 http://localhost:8888/ 입니다.
+
 eureka:
   client:
-    registerWithEureka: false # eureka의 registry에 등록할지 여부 설정
-    fetchRegistry: false # eureka의 registry에 있는 정보를 가져올지 여부 설정
+    registerWithEureka: false # Eureka 레지스트리에 자신을 등록할지 여부를 설정합니다.
+    fetchRegistry: false # Eureka 레지스트리에서 정보를 가져올지 여부를 설정합니다.
     service-url:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/} # 대시보드 엔드포인트 설정
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/} # Eureka 서버의 대시보드 엔드포인트 URL을 설정합니다.
+
   instance:
-    hostname: localhost
-    preferIpAddress: true
+    hostname: localhost # Eureka에 등록될 때 사용되는 호스트 이름을 설정합니다.
+    preferIpAddress: true # IP 주소를 사용하여 통신하도록 설정합니다.
+
   server:
-    waitTimeInMsWhenSyncEmpty: 0
+    waitTimeInMsWhenSyncEmpty: 0 # Eureka 서버가 비어 있을 때 동기화를 기다리는 시간을 설정합니다.
+
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "*" # 관리 엔드포인트의 노출을 설정하며, 여기서는 모든 엔드포인트를 노출하도록 설정합니다.
