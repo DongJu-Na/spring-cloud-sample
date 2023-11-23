@@ -1,0 +1,23 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: eureka
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+eureka:
+  client:
+    registerWithEureka: false # eureka의 registry에 등록할지 여부 설정
+    fetchRegistry: false # eureka의 registry에 있는 정보를 가져올지 여부 설정
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/} # 대시보드 엔드포인트 설정
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
