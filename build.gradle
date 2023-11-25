@@ -1,39 +1,53 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.1.5'
-	id 'io.spring.dependency-management' version '1.1.3'
+  id 'java'
+  id 'org.springframework.boot' version '3.1.5'
+  id 'io.spring.dependency-management' version '1.1.3'
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+// 모든 프로젝트에 적용.
+allprojects{
+  group = 'com.example'
+  version = '0.0.1-SNAPSHOT'
+  
+  java {
+    sourceCompatibility = '17'
+  }
 
-java {
-	sourceCompatibility = '17'
+  repositories {
+    mavenCentral()
+  }
+  
+  ext {
+    set('springCloudVersion', "2022.0.4")
+  }
 }
 
-repositories {
-	mavenCentral()
+// 서브 프로젝트 전체에 적용.
+subprojects{
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    // 공통적으로 사용하는 dependencies
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
 }
 
-ext {
-	set('springCloudVersion', "2022.0.4")
+project(':eureka-server') {
+    dependencies {
+         implementation 'org.springframework.cloud:spring-cloud-config-server'
+    }
 }
-
-dependencies {
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
-}
-
-tasks.named('bootBuildImage') {
-	builder = 'paketobuildpacks/builder-jammy-base:latest'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
+project(':config-server') {
+    dependencies {
+         implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+    }
 }
