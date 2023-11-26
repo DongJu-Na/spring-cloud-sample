@@ -8,5 +8,5 @@ spring:
       server:
         git:
           uri: https://github.com/DongJu-Na/spring-cloud-sample-config-repo
-          search-paths: settings/**
-          default-label: master
+          search-paths: /**
+          default-label: main
