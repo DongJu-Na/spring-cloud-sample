@@ -1,4 +1,5 @@
 rootProject.name = 'scs'
 include 'eureka-server'
 include 'config-server'
+include 'gateway-server'
 
