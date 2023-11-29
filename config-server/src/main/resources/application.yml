@@ -7,6 +7,13 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/DongJu-Na/spring-cloud-sample-config-repo
-          search-paths: /**
-          default-label: main
+          uri: https://github.com/DongJu-Na/spring-cloud-sample-config-repo # 설정 파일들이 있는 git repo url 주소 입니다.
+          search-paths: /**  # 저장소의 모든 파일 탐색합니다.
+          default-label: main #파일을 탐색할 git 기준 브랜치 입니다.
+          cloneOnStart: true # true 가 아닐 경우 유효하지 않은 설정 소스가 있어도 기동에 성공할 수 있습니다.
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # 관리 엔드포인트의 노출을 설정하며, 여기서는 모든 엔드포인트를 노출하도록 설정합니다.
