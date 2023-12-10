@@ -3,6 +3,9 @@ Spring MSA architecture Sample Project
 
 Welcome to the Spring Cloud Microservices Project! This project is designed to demonstrate the implementation of microservices architecture using Spring Cloud in a multi-module Gradle project. The project is structured to include Eureka Server, Config Server, and Gateway Server.
 
+<b>Config Git Here</b>
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DongJu-Na/spring-cloud-sample-config-repo)
+
 ## Project Structure
 
 The project is organized into the following modules:
