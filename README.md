@@ -13,7 +13,7 @@ The project is organized into the following modules:
 - **eureka-server**: Eureka Server module responsible for service registration and discovery.
 - **config-server**: Config Server module handling externalized configuration for microservices.
 - **gateway-server**: Gateway Server module serving as the entry point for all microservices.
-- **dummy-api-server**: DummyApi Server module serving as the entry point for all microservices.
+- **dummy-api-server**: This is a dummy API server for testing.
 
 ## Prerequisites
 
